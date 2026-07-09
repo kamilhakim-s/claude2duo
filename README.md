@@ -14,6 +14,7 @@ this repo only holds the presentation.
 | `deck/claude2duo-context-packs.pptx` | The 17-slide deck (20–30 min slot). Generated — do not hand-edit if you plan to regenerate. |
 | `deck/build_deck.py` | Script that generates the deck with [python-pptx](https://python-pptx.readthedocs.io/). All shapes/tables are native PPT objects, so the output stays fully editable. |
 | `deck/speaker-notes.md` | Per-slide talking points, timing map, anticipated objections with answers, and a pre-flight checklist (including the demo assets still to capture). |
+| `tickets/context-pack-generation-ticket.md` | Ready-to-paste Jira ticket for the Claude Code licence holder, containing the full generation prompt. The prompt produces the context pack plus `AI-WORKFLOW.md`, which makes Duo/Copilot follow a plan → refine → approve → execute-step-by-step workflow. |
 
 ## Regenerating the deck
 
