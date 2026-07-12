@@ -10,12 +10,12 @@ Audience: manager + team. Balanced pitch — business case for the manager, work
 | Section | Slides | Time | Cumulative |
 |---|---|---|---|
 | Opening (problem) | 1–3 | 4 min | 4 min |
-| The proposal | 4–8 | 8 min | 12 min |
-| Making it work | 9–12 | 6 min | 18 min |
-| Business case & rollout | 13–16 | 5 min | 23 min |
-| Summary + Q&A | 17 | 5–7 min | ~30 min |
+| The proposal | 4–8 | 7 min | 11 min |
+| Making it work + evidence | 9–13 | 8 min | 19 min |
+| Business case & rollout | 14–17 | 5 min | 24 min |
+| Summary + Q&A | 18 | 5–6 min | ~30 min |
 
-If running long, compress slides 11–12 (fresh-ness + security) to one minute each — their content works as "read the slide" material.
+If running long, compress slides 12–13 (freshness + security) to one minute each — their content works as "read the slide" material. Do NOT cut slide 11 (early findings) — it is the strongest evidence in the deck.
 
 ---
 
@@ -55,44 +55,50 @@ If running long, compress slides 11–12 (fresh-ness + security) to one minute e
 - Demo asset placeholder here: replace with real side-by-side Duo screenshots before presenting (same prompt, with and without pack).
 
 ### 8 · Sample pack (90 sec)
-- Pure show-and-tell slide once assets exist. Until then, describe what will be shown.
-- Assets to capture: (1) 1–2 page excerpt of a real generated ARCHITECTURE.md / API-CONTRACTS.md; (2) screenshot of the pack attached in Duo (IntelliJ or VS Code); (3) same in Copilot chat.
+- The left panel is REAL generated output — the R3 recipe from the task-cookbook pack, produced by Claude Code from the sample transfer-service. Point at the PITFALL line: this is tribal knowledge the generator derived from the code on its own.
+- Remaining assets to capture: screenshot of the pack attached in Duo (IntelliJ/VS Code) and the same in Copilot chat.
 
 ### 9 · Prompt experimentation (90 sec)
-- Message for the manager: this is *engineering*, not vibes — candidate prompts, fixed scoring criteria, iterate.
-- The five criteria matter; call out **size** (must fit context caps) and **accuracy** (spot-checked by the service's own devs).
+- Message for the manager: this is *engineering*, not vibes — and it is already underway. Five strategies written, five packs generated against a sample Spring Boot payments service, objective checks all passed.
+- Call out the token sizes on the cards: every pack fits a chat context with headroom (1.7k–6.4k tokens).
 
 ### 10 · Validation testing (90 sec)
-- The test matrix is the acceptance gate: every cell green on the pilot service before scaling.
-- Key line: **"We don't ask the team to trust it — we ask them to test it."**
+- Walk the four stages top to bottom; Stage 1 is DONE, Stages 2–3 are the Duo sessions we're asking time for.
+- Key line: **"We don't ask the team to trust it — we ask them to test it, and the test kit is already built."**
+- Mention scoring is weighted toward the agentic-workflow behaviour (40%) because that's the capability gap we're closing.
 
-### 11 · Keeping packs fresh (60 sec)
+### 11 · Early findings (2 min) — the money slide
+- Tell the trap story: the sample service constructs its Transfer entity in two code paths; miss one and data is silently lost. Only the task-cookbook pack warned about it unprompted, and the self-critique prompt *found it by testing its own output*.
+- Key line: **"The experiment is already telling us something non-obvious: packs must encode how to CHANGE the code, not just describe it."**
+- The right card is the credibility card: zero hallucinated classes, honest UNKNOWNs, clean hygiene scans.
+
+### 12 · Keeping packs fresh (60 sec)
 - Pre-empt the #1 objection (stale docs): packs are *generated*, so refresh = re-run a command.
 - Cadence: once per PI as routine enabler work + ad hoc after big merges. Each pack stamped with date + commit hash.
 
-### 12 · Security posture (60–90 sec)
+### 13 · Security posture (60–90 sec)
 - Slow down here if security stakeholders are in the room.
 - Three pillars: no new data exposure (same code the tools already see), no new tools/licences, human applies every change.
 - Honest caveat: generation prompts explicitly exclude secrets/hostnames, and packs get a human review before first commit.
 
-### 13 · Benefits (90 sec)
+### 14 · Benefits (90 sec)
 - Lead with **whole-team uplift from licences we already pay for** — that's the manager's headline.
 - Onboarding + living documentation are the secondary wins that keep paying even if AI tooling changes.
 
-### 14 · Risks (60–90 sec)
+### 15 · Risks (60–90 sec)
 - Present risks yourself before anyone raises them — it builds credibility.
 - Don't read the table; say "the two I take most seriously are staleness and over-reliance" and give the one-line mitigation for each.
 
-### 15 · SAFe rollout (2 min)
-- Map to what the audience knows: spike next iteration → pilot for one PI → measure at PI boundary → scale as enabler stories.
+### 16 · SAFe rollout (2 min)
+- The spike is marked IN PROGRESS — that's deliberate: prompts and packs already exist, so the remaining spike cost is just the Duo validation sessions.
 - Emphasise the *decide* gate: go / adjust / stop. This is time-boxed, not open-ended.
 - Metrics are on the slide; the survey (with vs without packs) is the one that convinces people.
 
-### 16 · The ask (90 sec)
-- Be concrete: one spike, a few hours of licensed-dev time, one pilot service, team feedback.
+### 17 · The ask (90 sec)
+- The ask has shrunk since the work started: finish the spike (Duo runs), a few licensed-dev hours to re-run the winning prompt fresh, one pilot service, team feedback.
 - Closing line: **"If it doesn't prove itself in one PI, we stop — and we keep the documentation either way."**
 
-### 17 · Summary + Q&A
+### 18 · Summary + Q&A
 - Read the four bullets, then open the floor.
 
 ---
@@ -121,11 +127,13 @@ Size is a first-class evaluation criterion in the spike. Files get split or trim
 
 ## Pre-flight checklist
 
-Demo assets to capture (replace the dashed placeholder boxes):
+Demo assets to capture (replace the dashed placeholder boxes) — capture these DURING the
+Duo validation runs, they're the same sessions:
 - [ ] Slide 7: side-by-side screenshots of the *same task* in GitLab Duo — fresh session without context vs with the pack attached.
-- [ ] Slide 8 (left): 1–2 page excerpt of a real generated pack (ARCHITECTURE.md + API-CONTRACTS.md) for the pilot service.
 - [ ] Slide 8 (top right): screenshot of the pack attached in a Duo chat session (IntelliJ or VS Code).
 - [ ] Slide 8 (bottom right): screenshot of the same pack attached in a Copilot chat session.
+- [x] Slide 8 (left): real generated pack excerpt — DONE (R3 recipe from context-pack-v4).
+- Optional upgrade after the Duo runs: add the winning variant + its scores to slide 11.
 
 Logistics:
 - [ ] Fill in presenter name + date on slide 1.
