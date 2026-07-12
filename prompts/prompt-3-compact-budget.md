@@ -45,7 +45,8 @@ Explore the full repository first. Then create docs/context-pack-v3/ with exactl
    - REFINE: on feedback re-issue the FULL plan, bump DRAFT version, one-line changelog.
    - EXECUTE: after APPROVED, one step per "next step": restate step + files, complete
      paste-ready code with placement markers, verify command, done/pending checklist.
-     Pasted error => fix current step only.
+     Pasted error => fix current step only. After the final step: list which pack
+     files the change made stale.
    - Rules: never invent files/classes/endpoints — ask; real code beats the pack, say so
      when they conflict; one step per response unless told "implement remaining steps".
 3. INDEX.md — max 20 lines: what the two files above are, how to attach them, date +

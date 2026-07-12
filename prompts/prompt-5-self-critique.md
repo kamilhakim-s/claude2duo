@@ -44,7 +44,8 @@ Create docs/context-pack-v5/ with:
     REFINE (full re-issued plan, bumped DRAFT version, one-line changelog) ->
     APPROVE (no implementation code before the literal reply APPROVED) ->
     EXECUTE (one step per "next step": complete paste-ready code with placement markers,
-    verify command, done/pending checklist; pasted errors fix the current step only).
+    verify command, done/pending checklist; pasted errors fix the current step only;
+    after the final step list which pack files the change made stale).
     Rules: never invent files/classes/endpoints — ask; real code beats the pack, say so
     on conflict; one step per response unless told "implement remaining steps".
 Constraints: max 800 lines/file (aim well under); tables/bullets over prose; exact names

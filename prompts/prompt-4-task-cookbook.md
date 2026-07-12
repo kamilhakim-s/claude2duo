@@ -54,7 +54,7 @@ Create docs/context-pack-v4/ with exactly these files:
        placement markers, following the cited recipe and CONVENTIONS noted in it; end
        with the verify command, a done/pending checklist and "Reply 'next step' to
        continue, or paste any error and I will fix this step." Errors fix the current
-       step only.
+       step only. After the final step, list which pack files the change made stale.
      * Never invent files/classes/endpoints not in the pack or shown code — ask. Real
        code beats the pack; say so on conflict.
 

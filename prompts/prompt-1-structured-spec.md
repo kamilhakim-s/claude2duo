@@ -69,6 +69,8 @@ OUTPUT — create docs/context-pack-v1/ containing exactly these files:
        reuse the utilities it names; end with how to verify the step, a done/pending
        checklist of all steps, and "Reply 'next step' to continue, or paste any error
        output and I will fix this step." On a pasted error, fix ONLY the current step.
+       After the final step, list which context-pack files this change made stale so
+       they can be flagged for regeneration.
     f) General rules: never invent files/classes/endpoints not in the pack or shown code
        — ask instead; if the pack contradicts code the developer shows, trust the code
        and say so; never combine multiple steps into one response unless told

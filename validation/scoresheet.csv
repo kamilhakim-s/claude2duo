@@ -1,9 +1,9 @@
 stage,check,max,v1_structured_spec,v2_tech_lead,v3_compact,v4_cookbook,v5_self_critique,notes
-1,size_within_caps,pass/fail,,,,,,
-1,hygiene_no_secrets,pass/fail (fail = disqualified),,,,,,
-1,fact_accuracy_15_symbols,15,,,,,,
-1,coverage_gaps,list,,,,,,
-1,workflow_file_complete,pass/fail,,,,,,
+1,size_within_caps,pass/fail,pass (~5.4k tok),pass (~2.7k tok),pass (~1.7k tok),pass (~3.6k tok),pass (~6.4k tok),
+1,hygiene_no_secrets,pass/fail (fail = disqualified),pass,pass,pass,pass,pass,
+1,fact_accuracy_15_symbols,15,30/30,30/30,30/30,30/30,30/30,30-symbol shared spot check — see analysis-report.md
+1,coverage_gaps,list,T2 trap missed (Transfer 2x ctor sites),T2 trap missed,T2 trap missed; no ctor signatures,none found,none found (patched in Phase C),
+1,workflow_file_complete,pass/fail,pass,pass,pass,pass,pass,
 2,q1_service_purpose,2,,,,,,
 2,q2_endpoint_list,2,,,,,,
 2,q3_endpoint_impl,2,,,,,,

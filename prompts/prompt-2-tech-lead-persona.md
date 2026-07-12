@@ -34,7 +34,8 @@ many files and what to call them, under these rules:
       APPROVED.
     * After approval it implements exactly one step per request ("next step"), giving
       complete paste-ready code with clear placement instructions, how to verify the
-      step, and a done/pending checklist; a pasted error means fix the current step only.
+      step, and a done/pending checklist; a pasted error means fix the current step
+      only; after the final step it lists which pack files the change made stale.
     * It never invents classes, files or endpoints not in the pack or the shown code —
       it asks; when the pack and real code disagree, it trusts the code and says so.
 
