@@ -542,7 +542,7 @@ s = add_slide()
 title_bar(s, "Keeping packs fresh (and cheap to keep fresh)", kicker="Making it work")
 items = [
     ("Regeneration is one command", "Packs are generated, not hand-written. Refreshing a service is re-running the winning prompt — minutes, not days.", ACCENT),
-    ("Cadence", "Regenerate once per PI as a routine enabler task, plus ad-hoc after significant merges to a service.", ACCENT),
+    ("Cadence", "Regenerate on a regular rhythm (e.g. each sprint or each release), plus ad-hoc after significant merges to a service.", ACCENT),
     ("Ownership", "The licensed Claude Code developers own generation; each service team spot-checks its own pack.", ACCENT),
     ("Drift guardrails", "Every pack carries a generated-on date + commit hash. Optional CI reminder when a service changes heavily since last generation.", WARN),
 ]
@@ -579,8 +579,8 @@ benefits = [
     ("Faster onboarding", "New joiners read the pack (or chat with it) instead of spelunking for weeks."),
     ("Living documentation", "Regenerable, always-current service docs as a permanent side effect."),
     ("Better reviews", "Standardised plans make AI-assisted changes predictable and easy to review."),
-    ("Compounding asset", "Prompts and templates improve every iteration and apply to every new service."),
-    ("Low cost to try", "A time-boxed spike by the licensed devs; no procurement, no platform work."),
+    ("Compounding asset", "Prompts and templates keep improving and apply to every new service."),
+    ("Low cost to try", "A small time-boxed experiment — and most of it is already done; no procurement, no platform work."),
 ]
 for i, (t, d) in enumerate(benefits):
     r, cidx = divmod(i, 3)
@@ -598,53 +598,98 @@ s = add_slide()
 title_bar(s, "Risks and how we handle them", kicker="Risks & mitigations")
 rows = [
     ["Risk", "Mitigation"],
-    ["Packs go stale and mislead the AI", "Per-PI regeneration cadence; generated-on date + commit hash in every pack; regeneration is one command"],
+    ["Packs go stale and mislead the AI", "Regular regeneration cadence; generated-on date + commit hash in every pack; regeneration is one command"],
     ["Over-reliance on AI-produced plans", "Plan template forces explicit test & rollback sections; manual apply + normal MR review remain mandatory"],
-    ["Packs too large for chat context caps", "Size is an explicit evaluation criterion; split or trim files per tool limits during the spike"],
-    ["Maintenance burden on licensed devs", "Generation is automated; effort is minutes per service per PI, tracked as enabler work"],
+    ["Packs too large for chat context caps", "Size is an explicit evaluation criterion; split or trim files per tool limits during validation"],
+    ["Maintenance burden on licensed devs", "Generation is automated; effort is minutes per service per cycle, planned as routine squad work"],
     ["Quality varies across services", "Standard prompts + acceptance bar per pack; service team spot-check before first commit"],
 ]
 fill_table(s, rows, Inches(0.6), Inches(1.85), Inches(12.25), Inches(4.6),
            col_widths=[4.2, 8.0], bold_first_col=True)
 footer(s, 15)
 
-# ============================================ 15 · SAFe ROLLOUT ===========
+# ====================================== 16 · WHAT EACH ROLE GETS ==========
 s = add_slide()
-title_bar(s, "Rollout, the SAFe way", kicker="Rollout plan")
-phases = [
-    ("Spike — IN PROGRESS", "5 prompt strategies written; 5 packs generated on a sample service; objective checks passed; Duo runs next", GOOD),
-    ("Pilot — one PI", "2–3 services; real feature work by non-licensed devs using packs + plan template; collect metrics", ACCENT),
-    ("Measure & decide", "Review metrics + dev feedback at PI boundary; go / adjust / stop", WARN),
-    ("Scale", "Roll out to all services as enabler stories; per-PI regeneration becomes routine", GOOD),
-]
-for i, (t, d, col) in enumerate(phases):
-    left = Emu(int(Inches(0.6)) + i * int(Inches(3.2)))
-    cc = card(s, left, Inches(1.95), Inches(2.85), Inches(2.6), line=col)
-    card_text(cc, [
-        [(t, 14, True, col)],
-        [(d, 12, False, INK)],
-    ])
-    if i < len(phases) - 1:
-        arrow(s, Emu(int(left) + int(Inches(2.85))), Inches(3.1), Inches(0.35))
+title_bar(s, "What this gives each role in a squad", kicker="Our team")
 
-c = card(s, Inches(0.6), Inches(4.95), Inches(12.25), Inches(1.9))
+roles = [
+    ("Developers", ACCENT, [
+        "Duo/Copilot answers in terms of OUR services — real classes, endpoints, conventions",
+        "Every change starts from a reviewed plan with step-by-step, paste-ready code",
+        "New joiners and cross-squad moves get productive on an unfamiliar service fast",
+    ]),
+    ("Testers", GOOD, [
+        "Every AI plan includes a test plan section, in the repo's own test conventions",
+        "TESTING.md tells the AI (and the tester) the layers, fixtures and run commands",
+        "GOTCHAS.md turns tribal knowledge of fragile areas into explicit test targets",
+    ]),
+    ("DevOps", WARN, [
+        "CONFIG-PROFILES.md and DEPLOYMENT.md make config and deployment facts attachable",
+        "Every plan has an explicit config & deployment impact section — no surprises late",
+        "Rollback notes are part of every plan by default",
+    ]),
+]
+for i, (t, col, items) in enumerate(roles):
+    left = Emu(int(Inches(0.6)) + i * int(Inches(4.15)))
+    cc = card(s, left, Inches(1.85), Inches(3.95), Inches(3.6), line=col)
+    paras = [[(t, 16, True, col)]]
+    for it in items:
+        paras.append([("• " + it, 12, False, INK)])
+    card_text(cc, paras)
+
+c = card(s, Inches(0.6), Inches(5.7), Inches(12.25), Inches(1.15), fill=ACCENT_LIGHT)
 card_text(c, [
-    [("Success metrics for the pilot", 15, True, ACCENT_DARK)],
-    [("• Pack load success rate in Duo and Copilot sessions (target: 100% of pilot packs)", 13, False, INK)],
-    [("• Developer survey: usefulness of answers with vs without packs", 13, False, INK)],
-    [("• Share of changes where the filled-in plan was usable with minor edits", 13, False, INK)],
-    [("• Time-to-first-usable-answer on service-specific questions, before vs after", 13, False, INK)],
-])
+    [("No process change: ", 14, True, ACCENT_DARK),
+     ("squads keep their boards, their MR reviews and their definition of done. The packs and the plan "
+      "template slot into how we already work — they just make the AI in the loop actually useful.", 14, False, INK)],
+], anchor=MSO_ANCHOR.MIDDLE)
 footer(s, 16)
+
+# ====================================== 17 · ACROSS OUR SQUADS ============
+s = add_slide()
+title_bar(s, "How it works across our squads", kicker="Our team")
+
+for i in range(4):
+    left = Emu(int(Inches(0.6)) + i * int(Inches(2.32)))
+    cc = card(s, left, Inches(1.85), Inches(2.15), Inches(2.15), line=ACCENT)
+    card_text(cc, [
+        [(f"Delivery squad {i + 1}", 13, True, ACCENT)],
+        [("Uses packs + plan template for feature work on its services; tester & devops "
+          "work from the same plan", 10.5, False, INK)],
+    ])
+rc = card(s, Inches(10.05), Inches(1.85), Inches(2.8), Inches(2.15), line=GOOD)
+card_text(rc, [
+    [("Release squad", 13, True, GOOD)],
+    [("Reads the config & deployment impact + rollback sections of every plan; "
+      "DEPLOYMENT.md per service = one consistent release reference", 10.5, False, INK)],
+])
+
+c = card(s, Inches(0.6), Inches(4.25), Inches(7.5), Inches(2.6))
+card_text(c, [
+    [("Getting there — three small steps", 15, True, ACCENT_DARK)],
+    [("1. Finish the Duo validation of the 5 generated packs (protocol ready)", 13, False, INK)],
+    [("2. Pilot with ONE delivery squad on 1–2 of its services, a few sprints", 13, False, INK)],
+    [("3. If the metrics hold, generate packs for the remaining squads' services;", 13, False, INK)],
+    [("    regeneration becomes a routine, minutes-per-service task", 13, False, INK)],
+])
+c2 = card(s, Inches(8.35), Inches(4.25), Inches(4.5), Inches(2.6))
+card_text(c2, [
+    [("Pilot success metrics", 15, True, ACCENT_DARK)],
+    [("• Packs load cleanly in Duo/Copilot", 12, False, INK)],
+    [("• Squad survey: answers with vs without packs", 12, False, INK)],
+    [("• Share of AI plans usable with minor edits", 12, False, INK)],
+    [("• Time-to-first-usable-answer, before vs after", 12, False, INK)],
+])
+footer(s, 17)
 
 # ================================================== 16 · THE ASK ==========
 s = add_slide()
 title_bar(s, "What I'm asking for today", kicker="The ask")
 asks = [
-    ("Finish the spike", "Time to run the Duo validation sessions on the 5 generated packs and pick the winning prompt"),
+    ("Finish the validation", "Time to run the Duo sessions on the 5 generated packs and pick the winning prompt"),
     ("Time-box for licensed devs", "A few hours of Claude Code time to re-run the winner fresh and generate the first real pack"),
-    ("Nominate a pilot service", "One representative Spring Boot service (and later 2–3 for the PI pilot)"),
-    ("Team commitment", "Pilot developers agree to use the packs on real tasks and give honest feedback"),
+    ("Nominate a pilot squad + service", "One delivery squad and 1–2 of its Spring Boot services to pilot with"),
+    ("Squad commitment", "The pilot squad agrees to use the packs on real tasks and give honest feedback"),
 ]
 for i, (t, d) in enumerate(asks):
     r, cidx = divmod(i, 2)
@@ -657,10 +702,10 @@ for i, (t, d) in enumerate(asks):
     ])
 c = card(s, Inches(0.6), Inches(5.95), Inches(12.25), Inches(1.0), fill=ACCENT_LIGHT)
 card_text(c, [
-    [("If the pilot doesn't prove itself in one PI, we stop — the only sunk cost is the spike, "
-      "and we keep the generated documentation either way.", 15, True, ACCENT_DARK)],
+    [("If the pilot doesn't prove itself within a few sprints, we stop — the only sunk cost is the "
+      "validation time, and we keep the generated documentation either way.", 15, True, ACCENT_DARK)],
 ], anchor=MSO_ANCHOR.MIDDLE)
-footer(s, 17)
+footer(s, 18)
 
 # ================================================== 17 · SUMMARY ==========
 s = add_slide()
@@ -680,7 +725,7 @@ set_text(box.text_frame, [
     [("", 8, False, WHITE)],
     [("•  Developers stay in control: standardised plans, manual apply, normal MR review.", 18, False, WHITE)],
     [("", 8, False, WHITE)],
-    [("•  One spike + one PI pilot tells us if it works — measured, time-boxed, SAFe-friendly.", 18, False, WHITE)],
+    [("•  A short pilot with one delivery squad tells us if it works — measured, time-boxed, and it slots into how our squads already operate.", 18, False, WHITE)],
 ])
 box = textbox(s, Inches(0.9), Inches(6.2), Inches(11.5), Inches(0.8))
 set_text(box.text_frame, [[("Questions?", 24, True, RGBColor(0x9E, 0xC9, 0xEE))]])

@@ -11,7 +11,7 @@ this repo only holds the presentation.
 
 | File | What it is |
 |---|---|
-| `deck/claude2duo-context-packs.pptx` | The 18-slide deck (20–30 min slot). Generated — do not hand-edit if you plan to regenerate. |
+| `deck/claude2duo-context-packs.pptx` | The 19-slide deck (20–30 min slot). Generated — do not hand-edit if you plan to regenerate. |
 | `deck/build_deck.py` | Script that generates the deck with [python-pptx](https://python-pptx.readthedocs.io/). All shapes/tables are native PPT objects, so the output stays fully editable. |
 | `deck/speaker-notes.md` | Per-slide talking points, timing map, anticipated objections with answers, and a pre-flight checklist (including the demo assets still to capture). |
 | `prompts/` | Five candidate generation prompts (different strategies) for the prompt experiment — see `prompts/README.md`. |

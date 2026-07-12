@@ -12,8 +12,8 @@ Audience: manager + team. Balanced pitch — business case for the manager, work
 | Opening (problem) | 1–3 | 4 min | 4 min |
 | The proposal | 4–8 | 7 min | 11 min |
 | Making it work + evidence | 9–13 | 8 min | 19 min |
-| Business case & rollout | 14–17 | 5 min | 24 min |
-| Summary + Q&A | 18 | 5–6 min | ~30 min |
+| Business case & our team | 14–18 | 7 min | 26 min |
+| Summary + Q&A | 19 | 4 min | ~30 min |
 
 If running long, compress slides 12–13 (freshness + security) to one minute each — their content works as "read the slide" material. Do NOT cut slide 11 (early findings) — it is the strongest evidence in the deck.
 
@@ -74,7 +74,7 @@ If running long, compress slides 12–13 (freshness + security) to one minute ea
 
 ### 12 · Keeping packs fresh (60 sec)
 - Pre-empt the #1 objection (stale docs): packs are *generated*, so refresh = re-run a command.
-- Cadence: once per PI as routine enabler work + ad hoc after big merges. Each pack stamped with date + commit hash.
+- Cadence: a regular rhythm (each sprint or each release) + ad hoc after big merges. Each pack stamped with date + commit hash.
 
 ### 13 · Security posture (60–90 sec)
 - Slow down here if security stakeholders are in the room.
@@ -89,16 +89,21 @@ If running long, compress slides 12–13 (freshness + security) to one minute ea
 - Present risks yourself before anyone raises them — it builds credibility.
 - Don't read the table; say "the two I take most seriously are staleness and over-reliance" and give the one-line mitigation for each.
 
-### 16 · SAFe rollout (2 min)
-- The spike is marked IN PROGRESS — that's deliberate: prompts and packs already exist, so the remaining spike cost is just the Duo validation sessions.
-- Emphasise the *decide* gate: go / adjust / stop. This is time-boxed, not open-ended.
-- Metrics are on the slide; the survey (with vs without packs) is the one that convinces people.
+### 16 · What each role gets (2 min)
+- Speak to each role in the room by name — this slide is for the team, not the manager.
+- Developers: service-aware answers and reviewable plans. Testers: the test-plan section is *mandatory* in every AI plan and written in our own test conventions. DevOps: config & deployment impact + rollback are explicit sections, so nothing lands on them as a surprise at release time.
+- Key line: **"No process change — same boards, same MR review, same definition of done. Only the AI gets smarter."**
 
-### 17 · The ask (90 sec)
-- The ask has shrunk since the work started: finish the spike (Duo runs), a few licensed-dev hours to re-run the winning prompt fresh, one pilot service, team feedback.
-- Closing line: **"If it doesn't prove itself in one PI, we stop — and we keep the documentation either way."**
+### 17 · Across our squads (2 min)
+- Walk the squad row: the four delivery squads use packs + plan template for their feature work; the release squad consumes the config/deployment/rollback sections of every plan and gets one consistent DEPLOYMENT.md per service as a release reference.
+- Then the three small steps: finish the Duo validation (kit is ready) → pilot with ONE delivery squad on 1–2 services for a few sprints → if the metrics hold, generate packs for the other squads' services.
+- Metrics card: the squad survey (with vs without packs) is the one that convinces people.
 
-### 18 · Summary + Q&A
+### 18 · The ask (90 sec)
+- The ask has shrunk since the work started: finish the validation (Duo runs), a few licensed-dev hours to re-run the winning prompt fresh, one pilot squad with 1–2 services, honest feedback.
+- Closing line: **"If it doesn't prove itself within a few sprints, we stop — and we keep the documentation either way."**
+
+### 19 · Summary + Q&A
 - Read the four bullets, then open the floor.
 
 ---
@@ -115,13 +120,13 @@ Which is why accuracy is an explicit scoring criterion, packs are spot-checked b
 Packs only describe code Duo and Copilot can already access through their approved integrations. Generation prompts explicitly exclude secrets, credentials, hostnames and personal data, and there's a human review gate.
 
 **"Who maintains this when you're busy?"**
-Regeneration is one command per service; it's tracked as normal enabler work, once per PI. If the licensed devs change, the prompts and the process are in a repo — anyone with a licence can run them.
+Regeneration is one command per service, planned as routine squad work on a regular cadence. If the licensed devs change, the prompts and the process are in a repo — anyone with a licence can run them.
 
 **"Devs will blindly apply AI plans."**
 The template *forces* a test plan and rollback section, application is manual, and MRs go through the same review as today. The plan actually makes review easier because every change arrives in the same shape.
 
 **"What if the packs don't fit in Duo's context window?"**
-Size is a first-class evaluation criterion in the spike. Files get split or trimmed per tool until they fit with headroom; that's precisely what the validation matrix on slide 10 tests.
+Size is a first-class evaluation criterion in the validation. Files get split or trimmed per tool until they fit with headroom; that's precisely what the validation stages on slide 10 test.
 
 ---
 
@@ -141,4 +146,5 @@ Logistics:
 - [ ] Export a backup PDF in case the meeting room only has a browser.
 - [ ] Test screen-share / room display with the actual deck (tables on slides 3, 10, 14 are the small-text risk).
 - [ ] Have the pilot-service shortlist ready in case the manager asks "which service?" on the spot.
-- [ ] Know your spike estimate (hours of licensed-dev time) — you will be asked.
+- [ ] Know your remaining-effort estimate (hours for the Duo runs + licensed-dev time) — you will be asked.
+- [ ] Know which delivery squad you'd propose as the pilot — you will be asked that too.
